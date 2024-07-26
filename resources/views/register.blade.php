@@ -1,39 +1,35 @@
 @extends('layouts.app')
 
-@section('title', 'Daftar')
-
 @section('content')
-    <h1>Daftar Pengguna Baru</h1>
+<div class="container mt-4">
+    <h1 class="mb-4">Daftar Akun</h1>
 
+    <div class="w-50 mx-auto">
     <form action="{{ route('register') }}" method="POST">
         @csrf
-
-        <div>
-            <label for="name">Nama:</label>
-            <input type="text" id="name" name="name" required>
+        <div class="mb-3">
+            <label for="name" class="form-label">Nama Lengkap</label>
+            <input type="text" id="name" name="name" class="form-control" required>
         </div>
 
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="form-control" required>
         </div>
 
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+        <div class="mb-3">
+            <label for="password" class="form-label">Kata Sandi</label>
+            <input type="password" id="password" name="password" class="form-control" required>
         </div>
 
-        <div>
-            <label for="password_confirmation">Konfirmasi Password:</label>
-            <input type="password" id="password_confirmation" name="password_confirmation" required>
+        <div class="mb-3">
+            <label for="password_confirmation" class="form-label">Konfirmasi Kata Sandi</label>
+            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
         </div>
 
-        <button type="submit">Daftar</button>
+        <button type="submit" class="btn btn-primary">Daftar</button>
+        <a href="{{ route('login') }}" class="btn btn-secondary">Sudah Punya Akun? Masuk</a>
     </form>
-
-    @if ($errors->any())
-        <div>
-            <strong>{{ $errors->first() }}</strong>
-        </div>
-    @endif
+    </div>
+</div>
 @endsection

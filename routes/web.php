@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilmController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\RegisterController;
@@ -22,11 +23,17 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/', [FilmController::class, 'index'])->name('films.index');
-Route::get('/tickets/create/{film}', [TicketController::class, 'create'])->name('tickets.create');
+Route::get('/tickets/create/{film}', [TicketController::class, 'create'])->middleware('auth')->name('tickets.create');
 Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store');
+
+Route::get('/films/{id}', [FilmController::class, 'show'])->name('films.show');
 
 Route::get('/my-tickets', [TicketController::class, 'index'])->middleware('auth')->name('my-tickets');
 
+Route::delete('/tickets/{id}', [TicketController::class, 'destroy'])->name('tickets.destroy');
 
 Route::get('/admin/films/create', [FilmController::class, 'create'])->middleware('auth')->name('films.create');
 Route::post('/admin/films', [FilmController::class, 'store'])->name('films.store');
+
+
+Route::get('/admin/tickets', [AdminController::class, 'index'])->name('admin.tickets');

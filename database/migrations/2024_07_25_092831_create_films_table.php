@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('duration'); // dalam menit
             $table->string('genre');
             $table->string('image')->nullable(); // URL gambar poster
+            $table->string('schedule')->nullable(); // Tambahkan kolom jadwal tayang
+            $table->date('release_date')->nullable();
             $table->timestamps();
         });
     }

@@ -31,7 +31,7 @@ class TicketController extends Controller
         ]);
 
         // Redirect dengan pesan sukses
-        return redirect()->route('films.index')->with('success', 'Tiket berhasil dipesan!');
+        return redirect()->route('my-tickets');
     }
 
     public function index()
@@ -40,5 +40,13 @@ class TicketController extends Controller
         $tickets = Ticket::where('user_id', Auth::id())->get();
 
         return view('tickets.index', compact('tickets'));
+    }
+
+    public function destroy($id)
+    {
+        $ticket = Ticket::findOrFail($id);
+        $ticket->delete();
+
+        return redirect()->route('my-tickets')->with('success', 'Tiket berhasil dihapus.');
     }
 }

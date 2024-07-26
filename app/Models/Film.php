@@ -9,8 +9,7 @@ class Film extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'duration', 'genre', 'image',];
-
+    protected $fillable = ['title', 'genre', 'description', 'duration', 'schedule', 'image','release_date',];
     public function tickets()
     {
         return $this->hasMany(Ticket::class);

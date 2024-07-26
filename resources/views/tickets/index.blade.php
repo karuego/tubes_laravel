@@ -1,36 +1,46 @@
 @extends('layouts.app')
 
-@section('title', 'Tiket Saya')
-
 @section('content')
-    <h1>Tiket Saya</h1>
+<div class="container mt-4">
+    <h1 class="mb-4">Daftar Tiket Saya</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Judul Film</th>
+                <th>Nama Pembeli</th>
+                <th>Jumlah Tiket</th>
+                <th>Jadwal Tayang</th>
+                <th>Tanggal Tayang</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($tickets as $ticket)
+                <tr>
+                    <td>{{ $ticket->id }}</td>
+                    <td>{{ $ticket->film->title }}</td>
+                    <td>{{ $ticket->user->name }}</td>
+                    <td>{{ $ticket->quantity }}</td>
+                    <td>{{ $ticket->film->schedule }}</td>
+                    <td>{{ \Carbon\Carbon::parse($ticket->film->release_date)->format('d-m-Y') }}</td>
+                    <td>
+                        <form action="{{ route('tickets.destroy', $ticket->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
     @if ($tickets->isEmpty())
-        <p>Anda belum memesan tiket.</p>
-    @else
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Judul Film</th>
-                    <th>Genre</th>
-                    <th>Deskripsi</th>
-                    <th>Jumlah</th>
-                    <th>Tanggal Dipesan</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($tickets as $ticket)
-                    <tr>
-                        <td>{{ $ticket->id }}</td>
-                        <td>{{ $ticket->film->title }}</td>
-                        <td>{{ $ticket->film->genre }}</td>
-                        <td>{{ $ticket->film->description }}</td>
-                        <td>{{ $ticket->quantity }}</td>
-                        <td>{{ $ticket->created_at }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="alert alert-info mt-3">
+            Anda belum membeli tiket.
+        </div>
     @endif
+</div>
 @endsection

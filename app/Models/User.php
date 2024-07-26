@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +21,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin', 
     ];
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin'; // Sesuaikan dengan logika Anda
+    }
 
     /**
      * The attributes that should be hidden for serialization.
