@@ -25,6 +25,18 @@ class FilmController extends Controller
         return view('films.show', compact('film'));
     }
 
+    public function destroy($id)
+    {
+        // Cari film berdasarkan ID
+        $film = Film::findOrFail($id);
+
+        // Hapus film
+        $film->delete();
+
+        // Redirect kembali dengan pesan sukses
+        return redirect()->route('films.index')->with('success', 'Film berhasil dihapus.');
+    }
+
     public function store(Request $request)
     {
         $request->validate([

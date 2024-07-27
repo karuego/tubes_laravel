@@ -38,7 +38,7 @@
     </table>
 
     @if ($tickets->isEmpty())
-        <div class="alert alert-info mt-3">
+        <div class="alert alert-danger mt-3">
             Anda belum membeli tiket.
         </div>
     @endif

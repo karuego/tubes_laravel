@@ -14,7 +14,7 @@
             <input type="number" id="quantity" name="quantity" class="form-control" required min="1">
         </div>
 
-        <button type="submit" class="btn btn-primary mt-2">Pesan Tiket</button>
+        <button type="submit" class="btn btn-success mt-2">Pesan Tiket</button>
         <a href="{{ route('films.index') }}" class="btn btn-secondary mt-2">Kembali ke Daftar Film</a>
     </form>
 

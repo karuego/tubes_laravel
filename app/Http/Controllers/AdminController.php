@@ -8,9 +8,19 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tickets = Ticket::with('film')->get(); // Ambil semua tiket dengan relasi film
-        return view('admin.tickets.index', compact('tickets'));
+        $query = $request->input('search');
+        $tickets = Ticket::with('film', 'user') // Memuat relasi user
+            ->when($query, function ($queryBuilder) use ($query) {
+                return $queryBuilder->whereHas('user', function ($q) use ($query) {
+                    $q->where('name', 'like', "%{$query}%"); // Menggunakan nama pengguna
+                });
+            })
+            ->get();
+
+        return view('admin.tickets.index', compact('tickets', 'query'));
     }
+
+    
 }

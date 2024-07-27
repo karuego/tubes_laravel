@@ -21,7 +21,7 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect()->intended('/films'); // Redirect setelah login
+            return redirect()->intended('/'); // Redirect setelah login
         }
 
         return back()->withErrors([

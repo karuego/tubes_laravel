@@ -3,6 +3,14 @@
 @section('content')
 <div class="container">
     <h1>Daftar Tiket</h1>
+
+    <form method="GET" action="{{ route('admin.tickets') }}" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Cari nama pembeli..." value="{{ request('search') }}">
+            <button class="btn btn-primary" type="submit">Cari</button>
+        </div>
+    </form>
+
     <table class="table table-bordered">
         <thead>
             <tr>

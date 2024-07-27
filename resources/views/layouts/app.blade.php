@@ -13,7 +13,7 @@
         }
     </style>
 </head>
-<body class="bg-blue-400">
+<body class="">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="/">LK22</a>
@@ -35,13 +35,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.tickets') }}">Tiket</a>
                     </li>
-    @endif
+                @endif
                 </ul>
+                
                 @if(Auth::check())
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-flex">
                     @csrf
                     <button type="submit" class="btn btn-link nav-link">Logout</button>
                 </form>
+                @else
+                <a href="/login" class="btn btn-link nav-link my-2 my-sm-0">Login</a>
                 @endif
             </div>
         </div>

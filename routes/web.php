@@ -37,3 +37,5 @@ Route::post('/admin/films', [FilmController::class, 'store'])->name('films.store
 
 
 Route::get('/admin/tickets', [AdminController::class, 'index'])->name('admin.tickets');
+
+Route::delete('/films/{id}', [FilmController::class, 'destroy'])->name('films.destroy');
