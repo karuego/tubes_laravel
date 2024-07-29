@@ -22,7 +22,7 @@
                     </a>
                 </li>
 
-                @if(Request::is('books'))
+                @if(request()->is('books'))
                 <li class="nav-item">
                     <button type="button" class="btn btn-link nav-link" id="showElementBtn" style="color: white">
                         <i class="ti ti-search"></i>
@@ -44,7 +44,7 @@
             <!-- User Login -->
             <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                 <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                    @if(Auth::check())
+                    @if(auth()->check() && auth()->user()->is_admin)
                     <b class="my-auto">Admin</b>
                     @endif
                     <li class="nav-item dropdown">
@@ -56,7 +56,7 @@
 
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up border border-secondary shadow shadow-lg" aria-labelledby="drop2">
                             <div class="message-body">
-                            @if(Auth::check())
+                            @if(auth()->check() && auth()->user()->is_admin)
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-flex">
                                     @csrf
                                     <button type="submit" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</button>

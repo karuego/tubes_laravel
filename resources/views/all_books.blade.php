@@ -59,7 +59,7 @@
                 {{ \Carbon\Carbon::parse($book->release_year)->format('Y') }}
             </p>
 
-            @if(Auth::check())
+            @if(auth()->check() && auth()->user()->is_admin)
             <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
                 @csrf
                 @method('DELETE')
