@@ -7,21 +7,21 @@
     <div class="w-50 mx-auto">
         <form action="{{ route('login') }}" method="POST" class="mt-5">
             @csrf
-    
+
             <div class="mb-3">
                 <label for="email" class="form-label">Email:</label>
-                <input type="email" id="email" name="email" class="form-control" required>
+                <input type="email" id="email" name="email" class="form-control" value="{{ old('email')}}" required>
             </div>
-    
+
             <div class="mb-3">
                 <label for="password" class="form-label">Password:</label>
                 <input type="password" id="password" name="password" class="form-control" required>
             </div>
-            
+
             <button type="submit" class="btn btn-primary">Login</button>
-            <a class="btn btn-warning" href="{{ route('register') }}">Daftar</a>
+            <a class="btn btn-warning btn-link border border-2 border-primary text-primary" href="{{ route('register') }}">Daftar</a>
         </form>
-    
+
         @if ($errors->any())
         <div class="mt-3">
             <div class="alert alert-danger">
@@ -30,5 +30,5 @@
         </div>
         @endif
     </div>
-    
+
 @endsection
