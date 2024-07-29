@@ -5,7 +5,7 @@
 
 <h1 class="mb-4">Sistem Manajemen Perpustakaan</h1>
 
-@if(Auth::check())
+@if(auth()->check() && auth()->user()->is_admin)
 <div class="row row-cols-1 row-cols-md-4 g-4 mb-4">
     <div class="col">
         <div class="card text-white bg-info">
