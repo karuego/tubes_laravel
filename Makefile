@@ -4,7 +4,7 @@ CONTAINER = laravel_app
 # Rule default
 all: setup
 
-setup: install setup-env setup-key migrate
+setup: install setup-env setup-key migrate link
 
 reset: rebuild setup-env setup-key fresh
 

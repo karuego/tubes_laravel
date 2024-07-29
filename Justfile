@@ -3,6 +3,7 @@ init:
 	cp .env.example .env
 	php artisan key:generate
 	php artisan migrate
+	just link
 
 link:
 	php artisan storage:link
