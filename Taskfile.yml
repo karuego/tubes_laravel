@@ -1,0 +1,17 @@
+version: '3'
+
+env:
+  ENV: testing
+
+dotenv: ['.env', '{{.ENV}}/.env.', '{{.HOME}}/.env']
+
+tasks:
+  init:
+    cmds:
+      - composer install
+      - cp .env.example .env
+      - php artisan key:generate
+
+  run:
+    cmds:
+      - php artisan serve
