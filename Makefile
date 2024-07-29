@@ -8,6 +8,9 @@ setup: install setup-env setup-key migrate
 
 reset: rebuild setup-env setup-key fresh
 
+link:
+	php artisan storage:link
+
 setup-env:
 	cp .env.example .env
 
