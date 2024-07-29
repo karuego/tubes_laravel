@@ -1,4 +1,4 @@
-@extends('perpus.layouts.main')
+@extends('layouts.app')
 @section('content')
 <link rel="stylesheet" href="{{ asset('assets/css/perpus/index.css') }}">
 

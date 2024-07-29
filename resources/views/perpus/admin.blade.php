@@ -25,7 +25,7 @@
                         <p>Status: Admin</p>
                     </div>
                     <ul class="nav flex-column">
-                        <li class="nav-item"><a class="nav-link active" href="#"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/perpus/admin"><i class="fas fa-home"></i> Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-book"></i> Peminjaman</a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-book-open"></i> Pustaka</a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-chart-bar"></i> Laporan</a></li>
@@ -44,15 +44,6 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 content">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Home</h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group me-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Home</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Sistem Manajemen Perpustakaan</button>
-                        </div>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">
-                            <i class="fas fa-user"></i> Profile
-                        </button>
-                    </div>
                 </div>
 
                 <!-- Dashboard cards -->
@@ -60,43 +51,34 @@
                     <div class="col">
                         <div class="card text-white bg-info">
                             <div class="card-body">
-                                <h5 class="card-title"><i class="fas fa-users card-icon"></i> ANGGOTA</h5>
-                                <p class="card-text display-6">6</p>
+                                <h5 class="card-title"><i class="fas fa-users card-icon"></i> Anggota</h5>
+                                <p class="card-text display-6">{{ $user_count }}</p>
                             </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="card text-white bg-danger">
                             <div class="card-body">
-                                <h5 class="card-title"><i class="fas fa-book card-icon"></i> JUDUL BUKU</h5>
-                                <p class="card-text display-6">5</p>
+                                <h5 class="card-title"><i class="fas fa-book card-icon"></i> Jumlah Buku</h5>
+                                <p class="card-text display-6">{{ $book_count }}</p>
                             </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="card text-white bg-success">
                             <div class="card-body">
-                                <h5 class="card-title"><i class="fas fa-tag card-icon"></i> PEMINJAMAN HARI INI</h5>
-                                <p class="card-text display-6">1</p>
+                                <h5 class="card-title"><i class="fas fa-tag card-icon"></i> Peminjaman Hari ini</h5>
+                                <p class="card-text display-6">NaN</p>
                             </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="card text-white bg-warning">
                             <div class="card-body">
-                                <h5 class="card-title"><i class="fas fa-sync card-icon"></i> BUKU KEMBALI HARI INI</h5>
-                                <p class="card-text display-6">1</p>
+                                <h5 class="card-title"><i class="fas fa-sync card-icon"></i> Buku Kembali Hari ini</h5>
+                                <p class="card-text display-6">NaN</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Graph -->
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Grafik Peminjaman Buku</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Grafik: Agustus 2023</h6>
-                        <canvas id="borrowingChart"></canvas>
                     </div>
                 </div>
             </main>
