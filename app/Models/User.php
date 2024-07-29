@@ -26,7 +26,7 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->role === 'admin'; // Sesuaikan dengan logika Anda
+        return $this->role === 'admin';
     }
 
     /**
