@@ -13,6 +13,14 @@ tasks:
       - php artisan key:generate
       - php artisan migrate
 
+  link:
+    cmds:
+      - php artisan storage:link
+
   run:
     cmds:
       - php artisan serve
+
+  fresh:
+    cmds:
+      - php artisan migrate:fresh --seed
