@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Film;
+use App\Models\Book;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -10,31 +11,47 @@ class BookController extends Controller
 {
     public function index()
     {
-        $films = Film::all();
-        return view('books.index', compact('films'));
+        $book_count = Book::count();
+        $user_count = User::count();
+
+        return view('index', compact('book_count', 'user_count'));
     }
 
     public function create()
     {
-        return view('admin.books.create');
+        return view('admin.add_book');
     }
 
-    public function show($id)
+    public function all(Request $request)
     {
-        $film = Film::findOrFail($id);
-        return view('books.show', compact('film'));
+        $_LEN = 10;
+
+        $books = null;
+        $search = $request->input('search');
+        $search = trim($search);
+
+        if (!empty($search)) {
+            $books = Book::query()->when(!empty($search), function ($query) use ($search, $_LEN) {
+                return $query->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('description', 'LIKE', "%{$search}%")
+                    ->paginate($_LEN);
+            });
+        } else if (session()->has('success')) {
+            $books = Book::latest()->paginate($_LEN);
+        } else {
+            $books = Book::paginate($_LEN);
+        }
+
+        return view('all_books', compact('books', 'search'));
     }
 
     public function destroy($id)
     {
-        // Cari film berdasarkan ID
-        $film = Film::findOrFail($id);
-
-        // Hapus film
+        $film = Book::findOrFail($id);
         $film->delete();
 
         // Redirect kembali dengan pesan sukses
-        return redirect()->route('books.index')->with('success', 'Film berhasil dihapus.');
+        return redirect()->route('books.all')->with('success', 'Buku berhasil dihapus.');
     }
 
     public function store(Request $request)
@@ -43,25 +60,21 @@ class BookController extends Controller
             'title' => 'required|string|max:255',
             'genre' => 'required|string|max:255',
             'description' => 'required|string',
-            'duration' => 'required|integer',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'schedule' => 'required|string'
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Menyimpan gambar
         $imagePath = $request->file('image')->store('images', 'public');
 
-        // Membuat film baru
-        Film::create([
+        // Membuat Buku baru
+        Book::create([
             'title' => $request->title,
             'genre' => $request->genre,
             'description' => $request->description,
-            'duration' => $request->duration,
-            'release_date' => $request->release_date,
-            'image' => $imagePath, // Simpan path gambar
-            'schedule' => $request->schedule,
+            'release_year' => $request->release_year,
+            'image' => $imagePath
         ]);
 
-        return redirect()->route('books.index')->with('success', 'Film berhasil ditambahkan!');
+        return redirect()->route('books.all')->with('success', 'Buku berhasil ditambahkan!');
     }
 }
