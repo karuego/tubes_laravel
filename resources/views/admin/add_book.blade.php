@@ -8,7 +8,7 @@
 
 <div class="w-75 mx-auto">
 
-    <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data" class="mt-4">
+    <form id="form-tambah" action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data" class="mt-4">
         @csrf
         <div class="row">
             <div class="col-md-6 mb-2">
@@ -44,6 +44,8 @@
                     Upload Gambar :
                 </label>
                 <input type="file" id="image" name="image" class="form-control" accept="image/*" required>
+
+                <img id="preview" class="img-fluid mb-3 col-sm-5">
             </div>
 
             <div class="col-12">
@@ -63,5 +65,21 @@
 @endif
 
 </div>
+
+<script type="text/javascript">
+
+const form = document.getElementById('form-tambah')
+form.reset()
+form.addEventListener('change', ev => {
+    const image = document.getElementById('image')
+    const preview = document.getElementById('preview')
+    preview.style.display = 'block'
+
+    const OFReader = new FileReader()
+    OFReader.readAsDataURL(image.files[0])
+    OFReader.onload = oFREvent => preview.src = oFREvent.target.result
+})
+
+</script>
 
 @endsection
