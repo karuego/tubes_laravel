@@ -1,4 +1,8 @@
+@if(auth()->check() && auth()->user()->is_admin)
+<nav class="navbar navbar-expand-lg navbar-light bg-success">
+@else
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+@endif
     <div class="container">
         <a class="navbar-brand" href="/" style='color: white'>
             Perpus
@@ -11,7 +15,7 @@
         <div class="collapse navbar-collapse" id="navbarNav" style='color: white'>
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('index') }}" style='color: white'>
+                    <a class="nav-link" href="{{ route('home') }}" style='color: white'>
                         Home
                     </a>
                 </li>
@@ -54,17 +58,21 @@
                                 height="35" class="rounded-circle">
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up border border-secondary shadow shadow-lg" aria-labelledby="drop2">
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up border border-secondary shadow" aria-labelledby="drop2">
                             <div class="message-body">
-                            @if(auth()->check() && auth()->user()->is_admin)
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-flex">
-                                    @csrf
-                                    <button type="submit" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</button>
-                                </form>
-                                <a href="/perpus/admin" class="btn btn-outline-primary mx-3 mt-2 d-block">Admin</a>
-                            @else
-                                <a href="{{ route('login') }}" class="btn btn-outline-primary mx-3 mt-2 d-block">Login</a>
-                            @endif
+                                @if(auth()->check())
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-flex">
+                                        @csrf
+                                        <button type="submit" class="btn btn-outline-danger w-100 mx-3 mt-2">Logout</button>
+                                    </form>
+                                @else
+                                    <a href="{{ route('login') }}" class="btn btn-outline-primary mx-3 mt-2 d-block">Login</a>
+                                    <a href="{{ route('register') }}" class="btn btn-outline-warning mx-3 mt-2 d-block">Register</a>
+                                @endif
+
+                                @if (auth()->check() && auth()->user()->is_admin)
+                                    <a href="/perpus/admin" class="btn btn-outline-primary mx-3 mt-2 d-block">Admin</a>
+                                @endif
                             </div>
                         </div>
 
