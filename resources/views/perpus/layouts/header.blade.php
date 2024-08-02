@@ -1,7 +1,7 @@
 <!--  Header Start -->
 <nav class="navbar navbar-expand-lg navbar-light @yield('nav-color', '')">
     <div class="container">
-        <a class="navbar-brand" href="/">Perpus</a>
+        <a class="navbar-brand" href="/perpus">Perpus</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -14,13 +14,13 @@
                     <a class="nav-link" href="/perpus/bukupengunjung"><i class="ti ti-book"> Buku Pengunjung</i></a>
                 </li>
                 @if(auth()->check() && auth()->user()->is_admin)
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('films.create') }}">Tambah Buku</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.tickets') }}">Tiket</a>
-                </li>
-            @endif
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('books.create') }}">Tambah Buku</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{-- route('admin.tickets') --}}">Tiket</a>
+                    </li>
+                @endif
             </ul>
 
             <!-- User Login -->

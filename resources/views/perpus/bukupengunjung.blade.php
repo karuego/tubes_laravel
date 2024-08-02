@@ -16,7 +16,7 @@
 
         <div class="welcome-banner text-center">
             <h2>SELAMAT DATANG DI PERPUSTAKAAN</h2>
-            <p class="mb-0">Universitas Negeri Baubau</p>
+            <p class="mb-0">Lorem ipsum dolor</p>
         </div>
 
         <div class="card mb-4">
