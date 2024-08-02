@@ -26,12 +26,12 @@
                     </div>
                     <ul class="nav flex-column">
                         <li class="nav-item"><a class="nav-link active" href="/perpus/admin"><i class="fas fa-home"></i> Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-book"></i> Peminjaman</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-book-open"></i> Pustaka</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-chart-bar"></i> Laporan</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-users"></i> Anggota</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/perpus/admin/peminjaman"><i class="fas fa-book"></i> Peminjaman</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/perpus/admin/databuku"><i class="fas fa-book-open"></i> Pustaka</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/perpus/admin/lapinjam"><i class="fas fa-chart-bar"></i> Laporan</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/perpus/admin/crew"><i class="fas fa-users"></i> Anggota</a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-user-tie"></i> Karyawan</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-cog"></i> Setting App</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/perpus/admin/set"><i class="fas fa-cog"></i> Setting App</a></li>
                     </ul>
                 </div>
                 <div class="position-absolute bottom-0 start-0 p-3">
