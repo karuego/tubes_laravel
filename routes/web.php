@@ -11,28 +11,26 @@ use App\Http\Controllers\RegisterController;
 use App\Models\Book;
 use App\Models\User;
 
-Route::get('/', [BookController::class, 'index'])->name('index');
-Route::get('/books', [BookController::class, 'all'])->name('books.all');
+Route::controller(BookController::class)->group(function () {
+    Route::get('/', 'index')->name('home');
+    Route::post('/books', 'all')->name('books.all');
+});
+
+// Auth
+Auth::routes();
 
 // Admin
-Route::get('/admin/books/create', [BookController::class, 'create'])->middleware('auth')->name('books.create');
-Route::post('/admin/books', [BookController::class, 'store'])->name('books.store');
-Route::delete('/admin/books/delete/{id}', [BookController::class, 'destroy'])->name('books.destroy');
-// End Admin
-
-// Login
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
-
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
-
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-// END Login
+Route::middleware(['auth', 'auth:admin'])->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
+        Route::post('/books', [BookController::class, 'store'])->name('books.store');
+        Route::delete('/books/delete/{id}', [BookController::class, 'destroy'])->name('books.destroy');
+    });
 
 
 
+
+});
 
 
 // -------------------------------
@@ -46,8 +44,8 @@ Route::get('/perpus/admin', function() {
     $user_count = User::count();
     return view('perpus.admin', compact('book_count', 'user_count'));
 });
-Route::get('/perpus/setadmin', function() {return view('perpus.setadmin');});
-Route::get('/perpus/crewadmin', function() {return view('perpus.crewadmin');});
-Route::get('/perpus/lapinjamadmin', function() {return view('perpus.lapinjamadmin');});
-Route::get('/perpus/databukuadmin', function() {return view('perpus.databukuadmin');});
-Route::get('/perpus/peminjamanadmin', function() {return view('perpus.peminjamanadmin');});
+Route::get('/perpus/admin/set', function() {return view('perpus.setadmin');});
+Route::get('/perpus/admin/crew', function() {return view('perpus.crewadmin');});
+Route::get('/perpus/admin/lapinjam', function() {return view('perpus.lapinjamadmin');});
+Route::get('/perpus/admin/databuku', function() {return view('perpus.databukuadmin');});
+Route::get('/perpus/admin/peminjaman', function() {return view('perpus.peminjamanadmin');});
