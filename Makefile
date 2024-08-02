@@ -6,7 +6,7 @@ all: setup
 
 setup: install setup-env setup-key migrate link
 
-reset: rebuild setup-env setup-key fresh
+reset: clear-cache setup-env setup-key fresh
 
 link:
 	php artisan storage:link
@@ -56,6 +56,7 @@ test:
 # Rule untuk membersihkan cache aplikasi
 clear-cache:
 	@if [ -f artisan ]; then \
+        composer dump-autoload; \
 		php artisan cache:clear; \
 		php artisan config:clear; \
 		php artisan route:clear; \
